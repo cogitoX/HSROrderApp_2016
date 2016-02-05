@@ -1,4 +1,6 @@
-﻿using HsrOrderApp.BL.DomainModel;
+﻿using HsrOrderApp.BL.BusinessComponents;
+using HsrOrderApp.BL.DomainModel;
+using HsrOrderApp.BL.DTOAdapters.Helper;
 using HsrOrderApp.SharedLibraries.DTO;
 using System;
 using System.Collections.Generic;
@@ -20,67 +22,52 @@ namespace HsrOrderApp.BL.DTOAdapters
                                                            CreditRating = s.CreditRating,
                                                            PreferedSupplier = s.PreferedSupplier,
                                                            ActiveFlag = s.ActiveFlag,
-
+                                                           Name = s.Name
                                                        };
             return supplierDtos.ToList();
         }
 
-        public static CustomerDTO CustomerToDto(Customer c)
+        public static SupplierDTO SupplierToDto(Supplier s)
         {
-            CustomerDTO dto = new CustomerDTO()
+            SupplierDTO dto = new SupplierDTO()
             {
-                Id = c.CustomerId,
-                Name = c.Name,
-                FirstName = c.FirstName,
-                Version = c.Version,
-                Addresses = AddressAdapter.AddressToDtos(c.Addresses)
+                AccountNumber = s.AccountNumber,
+                ActiveFlag = s.ActiveFlag,
+                CreditRating = s.CreditRating,
+                Version = s.Version,
+                PreferredSupplier = s.PreferedSupplier,
+                Name = s.Name
             };
 
             return dto;
         }
 
-        #region private helpers
-
-        private static int GetNumberOfOrdersOfCustomer(Customer customer, bool draftOnly)
-        {
-            if (customer.Orders == null)
-            {
-                return 0;
-            }
-            if (draftOnly)
-            {
-                return customer.Orders.Count(o => o.OrderStatus == OrderStatus.Draft);
-            }
-            return customer.Orders.Count();
-        }
-
-        #endregion
-
-        #endregion
+       #endregion
 
         #region DTOToCustomer
 
-        public static Customer DtoToCustomer(CustomerDTO dto)
+        public static Supplier DtoToSupplier(SupplierDTO dto)
         {
-            Customer customer = new Customer()
+            Supplier supplier = new Supplier()
             {
-                CustomerId = dto.Id,
+                AccountNumber = dto.Id,
                 Name = dto.Name,
-                FirstName = dto.FirstName,
-                Version = dto.Version
+                ActiveFlag = dto.ActiveFlag,
+                Version = dto.Version,
+                CreditRating = dto.CreditRating,
+                PreferedSupplier = dto.PreferredSupplier,
             };
-            ValidationHelper.Validate(customer);
-            return customer;
+            ValidationHelper.Validate(supplier);
+            return supplier;
         }
 
-        public static IEnumerable<ChangeItem> GetChangeItems(CustomerDTO dto, Customer customer)
-        {
-            IEnumerable<ChangeItem> changeItems = from c in dto.Changes
-                                                  select
-                                                      new ChangeItem(c.ChangeType,
-                                                                     AddressAdapter.DtoToAddress((AddressDTO)c.Object));
-            return changeItems;
-        }
+        //public static IEnumerable<ChangeItem> GetChangeItems(SupplierDTO dto, Supplier supplier)
+        //{
+        //    IEnumerable<ChangeItem> changeItems = from c in dto.Changes
+        //                                          select
+        //                                          new ChangeItem(c.ChangeType, AddressAdapter.DtoToAddress((AddressDTO)c.Object));
+        //    return changeItems;
+        //}
 
         #endregion
     }

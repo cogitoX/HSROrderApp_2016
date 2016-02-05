@@ -13,7 +13,11 @@ namespace HsrOrderApp.SharedLibraries.DTO
     {
         public SupplierListDTO()
         {
-            
+            this.AccountNumber = default(int);
+            this.ActiveFlag = default(int);
+            this.PreferedSupplier = default(int);
+            this.CreditRating = default(int);
+            this.Name = string.Empty;
         }
 
         [DataMember]
@@ -22,7 +26,7 @@ namespace HsrOrderApp.SharedLibraries.DTO
 
         [DataMember]
         [StringLengthValidator(1, 50)]
-        public bool ActiveFlag{ get; set; }
+        public int ActiveFlag{ get; set; }
 
         [DataMember]
         [RangeValidator(0, RangeBoundaryType.Inclusive, int.MaxValue, RangeBoundaryType.Ignore)]
@@ -30,19 +34,9 @@ namespace HsrOrderApp.SharedLibraries.DTO
 
         [DataMember]
         [RangeValidator(0, RangeBoundaryType.Inclusive, int.MaxValue, RangeBoundaryType.Ignore)]
-        public int NumberOfOpenOrders { get; set; }
+        public int PreferedSupplier { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                if (Name == string.Empty && FirstName == string.Empty)
-                    return string.Empty;
-                if (FirstName == string.Empty)
-                    return Name;
-                else
-                    return Name + ", " + FirstName;
-            }
-        }
+        public string Name { get; set; }
+        
     }
 }

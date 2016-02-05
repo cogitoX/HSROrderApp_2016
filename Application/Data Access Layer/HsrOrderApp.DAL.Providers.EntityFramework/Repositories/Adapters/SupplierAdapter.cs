@@ -27,6 +27,7 @@ namespace HsrOrderApp.DAL.Providers.EntityFramework.Repositories.Adapters
                 PreferedSupplier = s.PreferedSupplier,
                 ActiveFlag = s.ActiveFlag,
                 PuchraseWebserviceUrl = s.PurchaseWebserviceUrl,
+                Name = s.Name
             };
         }
     }

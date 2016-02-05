@@ -38,7 +38,7 @@ namespace HsrOrderApp.BL.BusinessComponents
         {
             IQueryable<Supplier> customers = new List<Supplier>().AsQueryable();
             
-            customers = rep.GetAll().Where(s => s.ActiveFlag == active && 
+            customers = rep.GetAll().Where(s => s.ActiveFlag.Equals(active) && 
                                                 s.PreferedSupplier == preferred && 
                                                 s.CreditRating == (int) creditRating);
             

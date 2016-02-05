@@ -11,17 +11,49 @@ namespace HsrOrderApp.SharedLibraries.DTO
     [DataContract]
     public class SupplierDTO : DTOParentObject
     {
+        private int _accountNumber;
         private int _creditRating;
         private int _preferredSupplier;
-        private bool _activeFlag;
+        private int _activeFlag;
         private string _purchaseWebserviceUrl;
+        private string _name;
 
         public SupplierDTO()
         {
             this.CreditRating = default(int);
             this.PreferredSupplier = default(int);
-            this.ActiveFlag = default(bool);
+            this.ActiveFlag = default(int);
             this.PurchaseWebserivceUrl = string.Empty;
+            this.AccountNumber = default(int);
+            this.Name = string.Empty;
+        }
+
+        [DataMember]
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (value != _name)
+                {
+                    this._name = value;
+                    OnPropertyChanged(() => Name);
+                }
+            }
+        }
+
+        [DataMember]
+        public int AccountNumber
+        {
+            get { return _accountNumber; }
+            set
+            {
+                if (value != _accountNumber)
+                {
+                    this._accountNumber = value;
+                    OnPropertyChanged(() => AccountNumber);
+                }
+            }
         }
 
         [DataMember]
@@ -53,7 +85,7 @@ namespace HsrOrderApp.SharedLibraries.DTO
         }
 
         [DataMember]
-        public bool ActiveFlag
+        public int ActiveFlag
         {
             get { return _activeFlag; }
             set
