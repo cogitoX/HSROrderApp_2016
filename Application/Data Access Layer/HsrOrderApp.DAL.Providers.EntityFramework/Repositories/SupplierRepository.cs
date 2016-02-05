@@ -1,4 +1,4 @@
-﻿using HsrOrderApp.DAL.Repositories;
+﻿using HsrOrderApp.DAL.Data.Repositories;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using System;
 using System.Collections.Generic;

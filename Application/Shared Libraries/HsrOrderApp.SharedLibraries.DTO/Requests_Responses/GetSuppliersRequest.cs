@@ -13,7 +13,10 @@ namespace HsrOrderApp.SharedLibraries.DTO.Requests_Responses
     public class GetSuppliersRequest : RequestType
     {
         [DataMember]
-        public int Preferred { get; set; }
+        public int? Preferred { get; set; }
+
+        [DataMember]
+        public int? Active { get; set; }
 
         [DataMember]
         public CreditRating CreditRating { get; set; }

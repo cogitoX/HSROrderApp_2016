@@ -1,5 +1,5 @@
 ﻿using HsrOrderApp.BL.DomainModel;
-using HsrOrderApp.DAL.Repositories;
+using HsrOrderApp.DAL.Data.Repositories;
 using HsrOrderApp.SharedLibraries.SharedEnums;
 using System;
 using System.Collections.Generic;
@@ -34,18 +34,24 @@ namespace HsrOrderApp.BL.BusinessComponents
             return customer;
         }
 
-        public IQueryable<Supplier> GetSupplierByCriteria(int preferred, bool active, CreditRating creditRating)
+        public IQueryable<Supplier> GetSupplierByCriteria(int? preferred, int? active, CreditRating creditRating)
         {
             IQueryable<Supplier> customers = new List<Supplier>().AsQueryable();
-            
-            customers = rep.GetAll().Where(s => s.ActiveFlag.Equals(active) && 
-                                                s.PreferedSupplier == preferred && 
-                                                s.CreditRating == (int) creditRating);
-            
+
+            if (preferred == null && active == null && creditRating == CreditRating.None)
+            {
+                customers = rep.GetAll();
+            }
+            else
+            {
+                customers = rep.GetAll().Where(s => s.ActiveFlag == active &&
+                                                    s.PreferedSupplier == preferred &&
+                                                    s.CreditRating == (int)creditRating);
+            }
             return customers;
         }
 
-        public int StoreSupplier(Supplier supplier, IEnumerable<ChangeItem> changeItems)
+        public int StoreSupplier(Supplier supplier)
         {
             int accountNumber = default(int);
             using (TransactionScope transaction = new TransactionScope())

@@ -472,11 +472,83 @@ namespace HsrOrderApp.UI.PresentationLogic
 
         #endregion
 
+        #region Supplier
+
+        public IList<SupplierListDTO> GetAllSuppliers()
+        {
+            return getSuppliers(null, null, CreditRating.None);
+        }
+
+        private IList<SupplierListDTO> getSuppliers(int? preferred, int? active, CreditRating creditRating)
+        {
+            try
+            {
+                GetSuppliersRequest request = new GetSuppliersRequest();
+                request.Preferred = preferred;
+                request.Active = active;
+                request.CreditRating = creditRating;
+                GetSuppliersResponse response = Service.GetSupplierByCriteria(request);
+                return response.Suppliers;
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, "PL Policy")) throw;
+                return new List<SupplierListDTO>();
+            }
+        }
+
+        public void StoreSupplier(SupplierDTO supplier)
+        {
+            try
+            {
+                StoreSupplierRequest request = new StoreSupplierRequest();
+                request.Supplier = supplier;
+                StoreSupplierResponse response = Service.StoreSupplier(request);
+                supplier.AccountNumber = response.AccountNumber;
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, "PL Policy")) throw;
+            }
+        }
+
+        #endregion
+
         #region IServiceFacade Members
 
         public void Dispose()
         {
             _service = null;
+        }
+
+        public void DeleteSupplier(int accountNumber)
+        {
+            try
+            {
+                DeleteSupplierRequest request = new DeleteSupplierRequest();
+                request.AccountNumber = accountNumber;
+                DeleteSupplierResponse response = Service.DeleteSupplier(request);
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, "PL Policy")) throw;
+            }
+        }
+
+        public SupplierDTO GetSupplierByAccountNumber(int accountNumber)
+        {
+            try
+            {
+                GetSupplierRequest request = new GetSupplierRequest();
+                request.AccountNumber = accountNumber;
+                GetSupplierResponse response = Service.GetByAccountNumber(request);
+                return response.Supplier;
+            }
+            catch (Exception ex)
+            {
+                if (ExceptionPolicy.HandleException(ex, "PL Policy")) throw;
+                return new SupplierDTO();
+            }
         }
 
         #endregion

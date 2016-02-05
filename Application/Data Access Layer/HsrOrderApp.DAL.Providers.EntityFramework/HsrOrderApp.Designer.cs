@@ -1659,19 +1659,15 @@ namespace HsrOrderApp.DAL.Providers.EntityFramework
         /// Create a new Supplier object.
         /// </summary>
         /// <param name="accountNumber">Initial value of the AccountNumber property.</param>
-        /// <param name="addressId">Initial value of the AddressId property.</param>
-        /// <param name="supplierProductId">Initial value of the SupplierProductId property.</param>
         /// <param name="creditRating">Initial value of the CreditRating property.</param>
         /// <param name="preferedSupplier">Initial value of the PreferedSupplier property.</param>
         /// <param name="activeFlag">Initial value of the ActiveFlag property.</param>
         /// <param name="purchaseWebserviceUrl">Initial value of the PurchaseWebserviceUrl property.</param>
         /// <param name="version">Initial value of the Version property.</param>
-        public static Supplier CreateSupplier(global::System.Int32 accountNumber, global::System.Int32 addressId, global::System.Int32 supplierProductId, global::System.Int32 creditRating, global::System.Int32 preferedSupplier, global::System.Int32 activeFlag, global::System.String purchaseWebserviceUrl, global::System.Byte[] version)
+        public static Supplier CreateSupplier(global::System.Int32 accountNumber, global::System.Int32 creditRating, global::System.Int32 preferedSupplier, global::System.Int32 activeFlag, global::System.String purchaseWebserviceUrl, global::System.Byte[] version)
         {
             Supplier supplier = new Supplier();
             supplier.AccountNumber = accountNumber;
-            supplier.AddressId = addressId;
-            supplier.SupplierProductId = supplierProductId;
             supplier.CreditRating = creditRating;
             supplier.PreferedSupplier = preferedSupplier;
             supplier.ActiveFlag = activeFlag;
@@ -1710,54 +1706,6 @@ namespace HsrOrderApp.DAL.Providers.EntityFramework
         private global::System.Int32 _AccountNumber;
         partial void OnAccountNumberChanging(global::System.Int32 value);
         partial void OnAccountNumberChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 AddressId
-        {
-            get
-            {
-                return _AddressId;
-            }
-            set
-            {
-                OnAddressIdChanging(value);
-                ReportPropertyChanging("AddressId");
-                _AddressId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AddressId");
-                OnAddressIdChanged();
-            }
-        }
-        private global::System.Int32 _AddressId;
-        partial void OnAddressIdChanging(global::System.Int32 value);
-        partial void OnAddressIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 SupplierProductId
-        {
-            get
-            {
-                return _SupplierProductId;
-            }
-            set
-            {
-                OnSupplierProductIdChanging(value);
-                ReportPropertyChanging("SupplierProductId");
-                _SupplierProductId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SupplierProductId");
-                OnSupplierProductIdChanged();
-            }
-        }
-        private global::System.Int32 _SupplierProductId;
-        partial void OnSupplierProductIdChanging(global::System.Int32 value);
-        partial void OnSupplierProductIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

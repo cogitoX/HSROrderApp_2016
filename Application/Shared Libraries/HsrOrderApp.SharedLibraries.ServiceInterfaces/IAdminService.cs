@@ -63,6 +63,30 @@ namespace HsrOrderApp.SharedLibraries.ServiceInterfaces
 
         #endregion
 
+        #region Supplier
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        [FaultContract(typeof(ValidationFault))]
+        GetSupplierResponse GetByAccountNumber(GetSupplierRequest request);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        [FaultContract(typeof(ValidationFault))]
+        GetSuppliersResponse GetSupplierByCriteria(GetSuppliersRequest request);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        [FaultContract(typeof(ValidationFault))]
+        StoreSupplierResponse StoreSupplier(StoreSupplierRequest request);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        [FaultContract(typeof(ValidationFault))]
+        DeleteSupplierResponse DeleteSupplier(DeleteSupplierRequest request);
+
+        #endregion
+
 
         #region Product
 

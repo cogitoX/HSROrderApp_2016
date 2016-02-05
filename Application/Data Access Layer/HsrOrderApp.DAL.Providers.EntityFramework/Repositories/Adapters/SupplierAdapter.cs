@@ -9,13 +9,20 @@ namespace HsrOrderApp.DAL.Providers.EntityFramework.Repositories.Adapters
 {
     public class SupplierAdapter
     {
-        internal static IQueryable<BL.DomainModel.Supplier> AdaptSupplier(EntityCollection<Supplier> supplierCollection)
-        {
-            if (supplierCollection.IsLoaded == false) return null;
+        //internal static IQueryable<BL.DomainModel.Supplier> AdaptSupplier(EntityCollection<Supplier> supplierCollection)
+        //{
+        //    if (supplierCollection.IsLoaded == false) return null;
 
-            var suppliers = from s in supplierCollection.AsEnumerable()
-                            select AdaptSupplier(s);
-            return suppliers.AsQueryable();
+        //    var suppliers = from s in supplierCollection.AsEnumerable()
+        //                    select AdaptSupplier(s);
+        //    return suppliers.AsQueryable();
+        //}
+
+        internal static BL.DomainModel.Supplier AdaptSupplier(EntityReference<Supplier> p)
+        {
+            if (p.Value == null)
+                return null;
+            return AdaptSupplier(p.Value);
         }
 
         internal static BL.DomainModel.Supplier AdaptSupplier(Supplier s)

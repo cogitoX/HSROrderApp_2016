@@ -16,6 +16,7 @@ namespace HsrOrderApp.BL.DomainModel
             this.PreferedSupplier = default(int);
             this.ActiveFlag = default(int);
             this.PuchraseWebserviceUrl = string.Empty;
+            this.Name = string.Empty;
         }
 
         public int AccountNumber { get; set; }

@@ -36,6 +36,8 @@ namespace HsrOrderApp.SharedLibraries.DTO
         [RangeValidator(0, RangeBoundaryType.Inclusive, int.MaxValue, RangeBoundaryType.Ignore)]
         public int PreferedSupplier { get; set; }
 
+        [DataMember]
+        [RangeValidator(0, RangeBoundaryType.Inclusive, int.MaxValue, RangeBoundaryType.Ignore)]
         public string Name { get; set; }
         
     }

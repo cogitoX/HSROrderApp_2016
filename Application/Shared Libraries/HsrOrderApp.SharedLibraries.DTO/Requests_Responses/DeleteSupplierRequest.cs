@@ -13,6 +13,6 @@ namespace HsrOrderApp.SharedLibraries.DTO.Requests_Responses
     {
         [DataMember]
         [RangeValidator(0, RangeBoundaryType.Exclusive, int.MaxValue, RangeBoundaryType.Ignore)]
-        public int SupplierAccountNumber { get; set; }
+        public int AccountNumber { get; set; }
     }
 }

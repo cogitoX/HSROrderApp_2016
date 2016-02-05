@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
@@ -11,6 +12,7 @@ using HsrOrderApp.BL.DtoAdapters;
 using HsrOrderApp.SharedLibraries.DTO.Requests_Responses;
 using HsrOrderApp.SharedLibraries.ServiceInterfaces;
 using HsrOrderApp.SharedLibraries.SharedEnums;
+using HsrOrderApp.BL.DTOAdapters;
 
 #endregion
 
@@ -113,6 +115,54 @@ namespace HsrOrderApp.SL.AdminService
             CustomerBusinessComponent bc = DependencyInjectionHelper.GetCustomerBusinessComponent();
 
             bc.DeleteCustomer(request.CustomerId);
+
+            return response;
+        }
+
+        #endregion
+
+        #region Supplier
+
+        GetSupplierResponse IAdminService.GetByAccountNumber(GetSupplierRequest request)
+        {
+            GetSupplierResponse response = new GetSupplierResponse();
+            SupplierBusinessComponent bc = DependencyInjectionHelper.GetSupplierBusinessComponent();
+
+            Supplier supplier = bc.GetByAccountNumber(request.AccountNumber);
+            response.Supplier = SupplierAdapter.SupplierToDto(supplier);
+
+            return response;
+        }
+
+        GetSuppliersResponse IAdminService.GetSupplierByCriteria(GetSuppliersRequest request)
+        {
+            GetSuppliersResponse response = new GetSuppliersResponse();
+            SupplierBusinessComponent bc = DependencyInjectionHelper.GetSupplierBusinessComponent();
+
+            IQueryable<Supplier> suppliers = bc.GetSupplierByCriteria(request.Preferred, request.Active, request.CreditRating);
+            response.Suppliers = SupplierAdapter.SupplierToDtos(suppliers);
+
+            return response;
+        }
+
+        StoreSupplierResponse IAdminService.StoreSupplier(StoreSupplierRequest request)
+        {
+            StoreSupplierResponse response = new StoreSupplierResponse();
+            SupplierBusinessComponent bc = DependencyInjectionHelper.GetSupplierBusinessComponent();
+
+            Supplier supplier = SupplierAdapter.DtoToSupplier(request.Supplier);
+            response.AccountNumber = bc.StoreSupplier(supplier);
+
+            return response;
+
+        }
+
+        DeleteSupplierResponse IAdminService.DeleteSupplier(DeleteSupplierRequest request)
+        {
+            DeleteSupplierResponse response = new DeleteSupplierResponse();
+            SupplierBusinessComponent bc = DependencyInjectionHelper.GetSupplierBusinessComponent();
+
+            bc.DeleteSupplier(request.AccountNumber);
 
             return response;
         }

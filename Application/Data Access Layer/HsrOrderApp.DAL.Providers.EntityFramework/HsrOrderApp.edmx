@@ -83,12 +83,10 @@
             <PropertyRef Name="AccountNumber" />
           </Key>
           <Property Name="AccountNumber" Type="int" Nullable="false" />
-          <Property Name="AddressId" Type="int" Nullable="false" />
-          <Property Name="SupplierProductId" Type="int" Nullable="false" />
           <Property Name="CreditRating" Type="int" Nullable="false" />
           <Property Name="PreferedSupplier" Type="int" Nullable="false" />
           <Property Name="ActiveFlag" Type="int" Nullable="false" />
-          <Property Name="PurchaseWebserviceUrl" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="PurchaseWebserviceUrl" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -125,7 +123,7 @@
           <Property Name="CustomerId" Type="int" />
           <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
-        <Association Name="FK__SupplierP__Accou__22401542">
+        <Association Name="FK__SupplierP__Accou__27F8EE98">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
           <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SupplierP__Produ__2334397B">
+        <Association Name="FK__SupplierP__Produ__28ED12D1">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="SupplierProduct" Type="Self.SupplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,11 +269,11 @@
           <EntitySet Name="SupplierProduct" EntityType="Self.SupplierProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInRoles" EntityType="Self.UserInRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__SupplierP__Accou__22401542" Association="Self.FK__SupplierP__Accou__22401542">
+          <AssociationSet Name="FK__SupplierP__Accou__27F8EE98" Association="Self.FK__SupplierP__Accou__27F8EE98">
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="SupplierProduct" EntitySet="SupplierProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__SupplierP__Produ__2334397B" Association="Self.FK__SupplierP__Produ__2334397B">
+          <AssociationSet Name="FK__SupplierP__Produ__28ED12D1" Association="Self.FK__SupplierP__Produ__28ED12D1">
             <End Role="Products" EntitySet="Products" />
             <End Role="SupplierProduct" EntitySet="SupplierProduct" />
           </AssociationSet>
@@ -478,12 +476,10 @@
             <PropertyRef Name="AccountNumber" />
           </Key>
           <Property Name="AccountNumber" Type="Int32" Nullable="false" />
-          <Property Name="AddressId" Type="Int32" Nullable="false" />
-          <Property Name="SupplierProductId" Type="Int32" Nullable="false" />
           <Property Name="CreditRating" Type="Int32" Nullable="false" />
           <Property Name="PreferedSupplier" Type="Int32" Nullable="false" />
           <Property Name="ActiveFlag" Type="Int32" Nullable="false" />
-          <Property Name="PurchaseWebserviceUrl" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaseWebserviceUrl" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Version" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" a:StoreGeneratedPattern="Computed" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <NavigationProperty Name="SupplierProduct" Relationship="HsrOrderAppModel.FK__SupplierP__Accou__22401542" FromRole="Supplier" ToRole="SupplierProduct" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -670,8 +666,6 @@
                 <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
                 <ScalarProperty Name="PreferedSupplier" ColumnName="PreferedSupplier" />
                 <ScalarProperty Name="CreditRating" ColumnName="CreditRating" />
-                <ScalarProperty Name="SupplierProductId" ColumnName="SupplierProductId" />
-                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
               </MappingFragment>
             </EntityTypeMapping>

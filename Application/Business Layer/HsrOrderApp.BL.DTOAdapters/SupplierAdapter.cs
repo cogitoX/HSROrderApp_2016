@@ -9,11 +9,11 @@ using System.Text;
 
 namespace HsrOrderApp.BL.DTOAdapters
 {
-    class SupplierAdapter
+    public class SupplierAdapter
     {
         #region SupplierToDTO
 
-        public static IList<SupplierListDTO> CustomersToDtos(IQueryable<Supplier> suppliers)
+        public static IList<SupplierListDTO> SupplierToDtos(IQueryable<Supplier> suppliers)
         {
             IQueryable<SupplierListDTO> supplierDtos = from s in suppliers
                                                        select new SupplierListDTO()
@@ -60,14 +60,6 @@ namespace HsrOrderApp.BL.DTOAdapters
             ValidationHelper.Validate(supplier);
             return supplier;
         }
-
-        //public static IEnumerable<ChangeItem> GetChangeItems(SupplierDTO dto, Supplier supplier)
-        //{
-        //    IEnumerable<ChangeItem> changeItems = from c in dto.Changes
-        //                                          select
-        //                                          new ChangeItem(c.ChangeType, AddressAdapter.DtoToAddress((AddressDTO)c.Object));
-        //    return changeItems;
-        //}
 
         #endregion
     }
